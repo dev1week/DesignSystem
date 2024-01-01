@@ -2,6 +2,11 @@
   "name": "@1week/themes",
   "version": "0.0.1",
   "type": "module",
+  ".": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
   "scripts": {
     "build": "npm run clean && npm run build:js && npm run build:type",
     "build:js": "node build.js",
