@@ -2,9 +2,10 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import styled from "@emotion/styled";
-import { vars } from "@1week/themes";
+import { vars, classes } from "@1week/themes";
 
 function App() {
+  console.log("t", classes.typography.heading);
   return <View />;
 }
 
@@ -28,5 +29,6 @@ const View = () => (
 );
 
 const Text = styled.p`
+  ${classes.typography.heading["4xl"]}
   color: ${vars.colors.$static.light.red[500]};
 `;
