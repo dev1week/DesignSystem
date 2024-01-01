@@ -12,7 +12,7 @@ const external = Object.keys({
 });
 
 const baseConfig = {
-  entryPoints: ["src/index.js"],
+  entryPoints: ["src/index.ts"],
   bundle: true,
   minify,
   sourcemap: true,
@@ -26,6 +26,7 @@ const baseConfig = {
 Promise.all([
   //es 모듈 제공하기
   esbuild.build({
+    ...baseConfig,
     format: "esm",
   }),
   // cjs 빌드 제공하기
