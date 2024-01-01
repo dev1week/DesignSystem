@@ -1,11 +1,25 @@
 import esbuild from "esbuild";
-//공통 속성 뽑기
+import pkg from "./package.json" assert { type: "json" };
+
+const dev = process.argv.includes("--dev");
+const minify = !dev;
+
+const watch = process.argv.includes("--watch");
+
+const external = Object.keys({
+  ...pkg.dependencies,
+  ...pkg.peerDependencies,
+});
+
 const baseConfig = {
   entryPoints: ["src/index.js"],
   bundle: true,
-  minify: true,
+  minify,
   sourcemap: true,
   outdir: "dist",
+  target: "es2019",
+  external,
+  //   watch,
 };
 
 //병렬화
@@ -24,6 +38,5 @@ Promise.all([
     },
   }),
 ]).catch(() => {
-  console.error(...(data + "Build Failed"));
-  ProcessingInstruction.exit(1);
+  process.exit(1);
 });
